@@ -1,0 +1,15 @@
+D:\Users\Michałek\c# Projects\ToDoList\obj\Debug\net6.0\ToDoList.csproj.AssemblyReference.cache
+D:\Users\Michałek\c# Projects\ToDoList\obj\Debug\net6.0\ToDoList.GeneratedMSBuildEditorConfig.editorconfig
+D:\Users\Michałek\c# Projects\ToDoList\obj\Debug\net6.0\ToDoList.AssemblyInfoInputs.cache
+D:\Users\Michałek\c# Projects\ToDoList\obj\Debug\net6.0\ToDoList.AssemblyInfo.cs
+D:\Users\Michałek\c# Projects\ToDoList\obj\Debug\net6.0\ToDoList.csproj.CoreCompileInputs.cache
+D:\Users\Michałek\c# Projects\ToDoList\bin\Debug\net6.0\ToDoList.exe
+D:\Users\Michałek\c# Projects\ToDoList\bin\Debug\net6.0\ToDoList.deps.json
+D:\Users\Michałek\c# Projects\ToDoList\bin\Debug\net6.0\ToDoList.runtimeconfig.json
+D:\Users\Michałek\c# Projects\ToDoList\bin\Debug\net6.0\ToDoList.dll
+D:\Users\Michałek\c# Projects\ToDoList\bin\Debug\net6.0\ToDoList.pdb
+D:\Users\Michałek\c# Projects\ToDoList\obj\Debug\net6.0\ToDoList.dll
+D:\Users\Michałek\c# Projects\ToDoList\obj\Debug\net6.0\refint\ToDoList.dll
+D:\Users\Michałek\c# Projects\ToDoList\obj\Debug\net6.0\ToDoList.pdb
+D:\Users\Michałek\c# Projects\ToDoList\obj\Debug\net6.0\ToDoList.genruntimeconfig.cache
+D:\Users\Michałek\c# Projects\ToDoList\obj\Debug\net6.0\ref\ToDoList.dll
