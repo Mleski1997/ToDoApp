@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Users\\Michałek\\c# Projects\\ToDoList\\ToDoList.csproj": {}
+    "D:\\Users\\Michałek\\Projects\\ToDoList\\ToDoList.csproj": {}
   },
   "projects": {
-    "D:\\Users\\Michałek\\c# Projects\\ToDoList\\ToDoList.csproj": {
+    "D:\\Users\\Michałek\\Projects\\ToDoList\\ToDoList.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Users\\Michałek\\c# Projects\\ToDoList\\ToDoList.csproj",
+        "projectUniqueName": "D:\\Users\\Michałek\\Projects\\ToDoList\\ToDoList.csproj",
         "projectName": "ToDoList",
-        "projectPath": "D:\\Users\\Michałek\\c# Projects\\ToDoList\\ToDoList.csproj",
+        "projectPath": "D:\\Users\\Michałek\\Projects\\ToDoList\\ToDoList.csproj",
         "packagesPath": "C:\\Users\\Michałek\\.nuget\\packages\\",
-        "outputPath": "D:\\Users\\Michałek\\c# Projects\\ToDoList\\obj\\",
+        "outputPath": "D:\\Users\\Michałek\\Projects\\ToDoList\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

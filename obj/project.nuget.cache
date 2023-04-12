@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AM8RAg8VNjoL6DtuqR1yvfWmG0vnW+zZxcmk72UGcQ+xnngj+FciCUztFvbzkAsoQ2+mwLHJ/N8j/btFJ1xY9g==",
+  "dgSpecHash": "M0mmbGzxHMj+TEGVSuZvQ/EiR0uq4mqcpdCLotbox8VRZXLo35ZiUXEx0vC4Au26Kk6AtXkEKhlFkls+T/PNbQ==",
   "success": true,
-  "projectFilePath": "D:\\Users\\Michałek\\c# Projects\\ToDoList\\ToDoList.csproj",
+  "projectFilePath": "D:\\Users\\Michałek\\Projects\\ToDoList\\ToDoList.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
