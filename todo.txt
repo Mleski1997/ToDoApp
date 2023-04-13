@@ -1,2 +1,2 @@
-0 : Jeden
-1 : Dwa
+58jeden
+59dwa

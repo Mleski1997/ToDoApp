@@ -14,8 +14,8 @@ namespace ToDoList
         List<string> toDoListApp = new List<string>();
         int nextId = 0;
         string filePath = @"D:\Users\Michałek\Projects\ToDoList\todolist.txt";
-     
-       
+
+
 
 
 
@@ -28,16 +28,19 @@ namespace ToDoList
         public void writeFile()
 
         {
-            /*using (StreamWriter sw = new StreamWriter(filePath, true) )
-            {
-                
-                for (int i = 0; i < toDoListApp.Count; i++)
-                {
-                    
-                    sw.WriteLine(nextId++ + ':' + toDoListApp[i] );
-                    
-                }
-            }*/
+            /* using (StreamWriter sw = new StreamWriter(filePath, true))
+             {
+
+                 for (int i = 0; i < toDoListApp.Count; i++)
+                 {
+
+                     sw.WriteLine(nextId++ + ':' + toDoListApp[i]);
+
+                 }
+            */
+
+
+
             StreamWriter sw;
 
             if (!File.Exists(filePath))
@@ -53,66 +56,74 @@ namespace ToDoList
             for (int i = 0; i < toDoListApp.Count; i++) {
                 sw.WriteLine(nextId++ + ":" + toDoListApp[i]);
 
-                    }
+            }
             sw.Close();
 
 
 
 
+
         }
+    
 
-        
 
-        public void readFile()      
+
+
+
+        public void readFile()
         {
-            /* try
-              {
-                  using (StreamReader sr = new StreamReader(filePath))
-                  {
+           /* try
+            {
+                using (StreamReader sr = new StreamReader(filePath))
+                {
 
-                      {
-                          string line;
-
-
-                          while ((line = sr.ReadLine()) != null)
-                          {
-
-                             toDoListApp.Add(line);
-                             var lineTimes = line.Split(':');
-                              int id = int.Parse(lineTimes[0]);
-                              string todo = lineTimes[1];
+                    {
+                        string line;
 
 
+                        while ((line = sr.ReadLine()) != null)
+                        {
 
-                              nextId = Math.Max(nextId, id);
-                              nextId++;
-
-                             Console.WriteLine(line);
+                            
+                            var lineTimes = line.Split(':');
+                            int id = int.Parse(lineTimes[0]);
+                            string todo = lineTimes[1];
 
 
 
+                            nextId = Math.Max(nextId, id);
+                            nextId++;
+
+                            Console.WriteLine(line);
 
 
-                         }
-                      }
 
 
-                  }
-              }
-              catch (Exception e)
-              {
-                  Console.WriteLine("Chuj");
-                  Console.WriteLine(e.Message);
-              }  */
 
+                        }
+                    }
+
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Chuj");
+                Console.WriteLine(e.Message);
+            }
+        }
+        */
             
 
-            StreamReader sr = File.OpenText(filePath);
+             StreamReader sr = File.OpenText(filePath);
             string line = "";
             int i = 0;
 
             Console.WriteLine("Lista ToDo");
             while((line = sr.ReadLine()) != null) {
+
+       
+                
                 var lineTimes = line.Split(':'); 
                 int id = int.Parse(lineTimes[0]);
                 string todo = lineTimes[1];
@@ -120,12 +131,15 @@ namespace ToDoList
 
                 nextId = Math.Max(nextId, id);
                 nextId++;
-                Console.WriteLine(toDoListApp);
+                Console.WriteLine(line) ; 
+
+                
+
                 
             }
             sr.Close();
         }
-
+             
      
         public void addToDo()
         {
@@ -139,10 +153,21 @@ namespace ToDoList
         {
             showList();
             Console.WriteLine("Select number of task to delete");
-            int task = Convert.ToInt32(Console.ReadLine());
-            
+            int taskNumber = Convert.ToInt32(Console.ReadLine());
 
-            toDoListApp.RemoveAt(task);
+            var task = toDoListApp.FirstOrDefault(t => t.StartsWith($"{taskNumber}:"));
+
+            if (task != null)
+            {
+                toDoListApp.Remove(task);
+                Console.WriteLine("Deleted from todolist");
+            } else
+            {
+                Console.WriteLine("Not found in the list");
+            }
+
+
+            
         }
 
         public void selectTaskToCompleted()
