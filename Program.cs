@@ -5,8 +5,16 @@
         static void Main(string[] args)
         {
             ToDoApp app = new ToDoApp();
-            app.IntroduceToDo();
+            app.readFile();
             app.askWhatDo();
+
+            app.writeFile();
+           
+           
+
+
+            
+            
            
 
 

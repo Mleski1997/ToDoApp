@@ -1,22 +1,132 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+using System.IO;
+using System.Linq.Expressions;
+using System.Reflection.PortableExecutable;
+using System.Collections;
 
 namespace ToDoList
 {
     public class ToDoApp
     {
         List<string> toDoListApp = new List<string>();
+        int nextId = 0;
+        string filePath = @"D:\Users\Michałek\Projects\ToDoList\todolist.txt";
+     
+       
+
+
+
         public void IntroduceToDo()
         {
             Console.WriteLine("Welcome in ToDoApp you can register tasks here");
 
         }
 
+        public void writeFile()
+
+        {
+            /*using (StreamWriter sw = new StreamWriter(filePath, true) )
+            {
+                
+                for (int i = 0; i < toDoListApp.Count; i++)
+                {
+                    
+                    sw.WriteLine(nextId++ + ':' + toDoListApp[i] );
+                    
+                }
+            }*/
+            StreamWriter sw;
+
+            if (!File.Exists(filePath))
+            {
+                sw = File.CreateText(filePath);
+                Console.WriteLine("Plik utworzony");
+            }
+            else
+            {
+                sw = new StreamWriter(filePath, true);
+
+            }
+            for (int i = 0; i < toDoListApp.Count; i++) {
+                sw.WriteLine(nextId++ + ":" + toDoListApp[i]);
+
+                    }
+            sw.Close();
+
+
+
+
+        }
+
+        
+
+        public void readFile()      
+        {
+            /* try
+              {
+                  using (StreamReader sr = new StreamReader(filePath))
+                  {
+
+                      {
+                          string line;
+
+
+                          while ((line = sr.ReadLine()) != null)
+                          {
+
+                             toDoListApp.Add(line);
+                             var lineTimes = line.Split(':');
+                              int id = int.Parse(lineTimes[0]);
+                              string todo = lineTimes[1];
+
+
+
+                              nextId = Math.Max(nextId, id);
+                              nextId++;
+
+                             Console.WriteLine(line);
+
+
+
+
+
+                         }
+                      }
+
+
+                  }
+              }
+              catch (Exception e)
+              {
+                  Console.WriteLine("Chuj");
+                  Console.WriteLine(e.Message);
+              }  */
+
+            
+
+            StreamReader sr = File.OpenText(filePath);
+            string line = "";
+            int i = 0;
+
+            Console.WriteLine("Lista ToDo");
+            while((line = sr.ReadLine()) != null) {
+                var lineTimes = line.Split(':'); 
+                int id = int.Parse(lineTimes[0]);
+                string todo = lineTimes[1];
+               
+
+                nextId = Math.Max(nextId, id);
+                nextId++;
+                Console.WriteLine(toDoListApp);
+                
+            }
+            sr.Close();
+        }
+
+     
         public void addToDo()
         {
             Console.WriteLine("Write task to save");
@@ -29,27 +139,24 @@ namespace ToDoList
         {
             showList();
             Console.WriteLine("Select number of task to delete");
-            int taskNumber = Convert.ToInt32(Console.ReadLine());
-            toDoListApp.RemoveAt(taskNumber);
+            int task = Convert.ToInt32(Console.ReadLine());
+            
+
+            toDoListApp.RemoveAt(task);
         }
 
         public void selectTaskToCompleted()
         {
-            showList();
            
+
 
             int taskNumber = Convert.ToInt32(Console.ReadLine());
             string completedTask = toDoListApp[taskNumber];
             string cmpt = "Completed" + " : " + completedTask;
+            
 
             Console.WriteLine(cmpt);
             toDoListApp[taskNumber] = cmpt;
-          
-           
-
-
-
-
 
         }
 
@@ -69,22 +176,12 @@ namespace ToDoList
             Console.WriteLine(editString);
             toDoListApp[taskNumber] = editString;
 
-
-
-
-
         }
 
         public void showList ()
         {
-            for (int i = 0; i < toDoListApp.Count; i++)
-            {
-                Console.WriteLine(i + " : " + toDoListApp[i]);
-                toDoListApp.Sort();
-
-            }
-
-          
+           readFile();
+           
 
 
         }
