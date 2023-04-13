@@ -12,6 +12,7 @@ namespace ToDoList
     public class ToDoApp
     {
         List<string> toDoListApp = new List<string>();
+        List<string> toDoListApp2 = new List<string>();
         int nextId = 0;
         string filePath = @"D:\Users\Michałek\Projects\ToDoList\todolist.txt";
 
@@ -131,11 +132,14 @@ namespace ToDoList
 
                 nextId = Math.Max(nextId, id);
                 nextId++;
-                Console.WriteLine(line) ; 
+                Console.WriteLine(line) ;
 
-                
+               
+                toDoListApp2.Add(todo);
 
-                
+
+
+
             }
             sr.Close();
         }
@@ -155,19 +159,37 @@ namespace ToDoList
             Console.WriteLine("Select number of task to delete");
             int taskNumber = Convert.ToInt32(Console.ReadLine());
 
-            var task = toDoListApp.FirstOrDefault(t => t.StartsWith($"{taskNumber}:"));
+            toDoListApp2.RemoveAt(taskNumber);
+            File.WriteAllText(filePath, string.Empty);
 
-            if (task != null)
+            StreamWriter sw;
+
+            if (!File.Exists(filePath))
             {
-                toDoListApp.Remove(task);
-                Console.WriteLine("Deleted from todolist");
-            } else
-            {
-                Console.WriteLine("Not found in the list");
+                sw = File.CreateText(filePath);
+                Console.WriteLine("Plik utworzony");
             }
+            else
+            {
+                sw = new StreamWriter(filePath, true);
+
+            }
+            for (int i = 0; i < toDoListApp2.Count; i++)
+            {
+                sw.WriteLine(i + ":" + toDoListApp2[i]);
+
+            }
+            sw.Close();
 
 
-            
+
+
+
+
+
+
+
+
         }
 
         public void selectTaskToCompleted()
@@ -205,7 +227,10 @@ namespace ToDoList
 
         public void showList ()
         {
-           readFile();
+           for (int i = 0; i < toDoListApp2.Count; i++)
+            {
+                Console.WriteLine(i  + " " + toDoListApp2[i]);
+            }
            
 
 
