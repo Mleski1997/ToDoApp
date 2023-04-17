@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq.Expressions;
 using System.Reflection.PortableExecutable;
 using System.Collections;
+using System.Runtime.ExceptionServices;
+using System.Linq;
 
 namespace ToDoList
 {
@@ -13,10 +15,10 @@ namespace ToDoList
     {
         List<string> toDoListApp = new List<string>();
         List<string> toDoListApp2 = new List<string>();
+
+        
         int nextId = 0;
         string filePath = @"D:\Users\Michałek\Projects\ToDoList\todolist.txt";
-
-
 
 
 
@@ -29,17 +31,6 @@ namespace ToDoList
         public void writeFile()
 
         {
-            /* using (StreamWriter sw = new StreamWriter(filePath, true))
-             {
-
-                 for (int i = 0; i < toDoListApp.Count; i++)
-                 {
-
-                     sw.WriteLine(nextId++ + ':' + toDoListApp[i]);
-
-                 }
-            */
-
 
 
             StreamWriter sw;
@@ -60,62 +51,37 @@ namespace ToDoList
             }
             sw.Close();
 
+        }
 
+        
+        public void writeFile2()
+        {
+            StreamWriter sw;
 
+            if (!File.Exists(filePath))
+            {
+                sw = File.CreateText(filePath);
+                Console.WriteLine("Plik utworzony");
+            }
+            else
+            {
+                sw = new StreamWriter(filePath, true);
 
+            }
+            for (int i = 0; i < toDoListApp2.Count; i++)
+            {
+                sw.WriteLine(i + ":" + toDoListApp2[i]);
 
+            }
+            sw.Close();
         }
     
 
 
-
-
-
         public void readFile()
         {
-           /* try
-            {
-                using (StreamReader sr = new StreamReader(filePath))
-                {
-
-                    {
-                        string line;
-
-
-                        while ((line = sr.ReadLine()) != null)
-                        {
-
-                            
-                            var lineTimes = line.Split(':');
-                            int id = int.Parse(lineTimes[0]);
-                            string todo = lineTimes[1];
-
-
-
-                            nextId = Math.Max(nextId, id);
-                            nextId++;
-
-                            Console.WriteLine(line);
-
-
-
-
-
-                        }
-                    }
-
-
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Chuj");
-                Console.WriteLine(e.Message);
-            }
-        }
-        */
-            
-
+  
+   
              StreamReader sr = File.OpenText(filePath);
             string line = "";
             int i = 0;
@@ -132,13 +98,10 @@ namespace ToDoList
 
                 nextId = Math.Max(nextId, id);
                 nextId++;
-                Console.WriteLine(line) ;
+                
 
                
                 toDoListApp2.Add(todo);
-
-
-
 
             }
             sr.Close();
@@ -164,46 +127,30 @@ namespace ToDoList
 
             StreamWriter sw;
 
-            if (!File.Exists(filePath))
-            {
-                sw = File.CreateText(filePath);
-                Console.WriteLine("Plik utworzony");
-            }
-            else
-            {
-                sw = new StreamWriter(filePath, true);
-
-            }
-            for (int i = 0; i < toDoListApp2.Count; i++)
-            {
-                sw.WriteLine(i + ":" + toDoListApp2[i]);
-
-            }
-            sw.Close();
-
-
-
-
-
-
-
-
-
+            writeFile2();
 
         }
 
         public void selectTaskToCompleted()
         {
-           
-
+            showList();
 
             int taskNumber = Convert.ToInt32(Console.ReadLine());
-            string completedTask = toDoListApp[taskNumber];
-            string cmpt = "Completed" + " : " + completedTask;
+            string completedTask = toDoListApp2[taskNumber];
+            string cmpt ="Completed"+ " " + completedTask;
+
             
 
             Console.WriteLine(cmpt);
-            toDoListApp[taskNumber] = cmpt;
+            toDoListApp2[taskNumber] = cmpt;
+
+            
+            File.WriteAllText(filePath, string.Empty);
+
+            StreamWriter sw;
+
+
+            writeFile2();
 
         }
 
@@ -213,15 +160,21 @@ namespace ToDoList
             showList();
             int taskNumber = Convert.ToInt32(Console.ReadLine());
            
-            Console.WriteLine(toDoListApp[taskNumber]);
-            String taskToEdit = toDoListApp[taskNumber];
+            Console.WriteLine(toDoListApp2[taskNumber]);
+            String taskToEdit = toDoListApp2[taskNumber];
             Console.WriteLine("What word do you want replace?");
             string oldWord = Console.ReadLine();
             Console.WriteLine("Please write a new word");
             string newWord = Console.ReadLine();
             string editString = taskToEdit.Replace(oldWord, newWord);
             Console.WriteLine(editString);
-            toDoListApp[taskNumber] = editString;
+            toDoListApp2[taskNumber] = editString;
+
+            File.WriteAllText(filePath, string.Empty);
+
+            StreamWriter sw;
+
+            writeFile2();
 
         }
 
@@ -229,12 +182,17 @@ namespace ToDoList
         {
            for (int i = 0; i < toDoListApp2.Count; i++)
             {
-                Console.WriteLine(i  + " " + toDoListApp2[i]);
+                Console.WriteLine(i  + " : " + toDoListApp2[i]);
+                
             }
            
 
 
+
         }
+
+
+     
 
         public void askWhatDo()
         {
